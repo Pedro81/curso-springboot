@@ -1,0 +1,9 @@
+spring.application.name=servicio-usuarios
+server.port=${PORT:0}
+
+eureka.instance.instance-id=${spring.application.name}:${spring.application.instance_id:${random.value}}
+
+eurka.client.service-url.dealutZone=http://localhost:8761/eureka
+
+#Para log4j
+logging.level.org.hibernet.SQL=debug;

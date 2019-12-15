@@ -1,0 +1,16 @@
+package com.formacionbdi.springboot.app.productos.service;
+
+import java.util.List;
+
+import com.formacionbdi.springboot.app.productos.models.entity.ProductoOld;
+
+public interface IProductoService {
+	
+	public List<ProductoOld> findAll();
+	public ProductoOld findById(Long Id);
+	
+	public ProductoOld save(ProductoOld producto);
+	public void deleteById(Long id);
+	
+
+}

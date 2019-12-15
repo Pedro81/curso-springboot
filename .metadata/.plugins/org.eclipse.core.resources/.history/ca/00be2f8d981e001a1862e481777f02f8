@@ -1,0 +1,31 @@
+package com.formacionbdi.springboot.app.usuarios.models.dao;
+
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.PagingAndSortingRepository;
+import org.springframework.data.rest.core.annotation.RepositoryRestResource;
+
+import com.formacionbdi.springboot.app.usuarios.models.entity.Usuario;
+
+//@RepositoryRestResource (path = "usuarios")
+public interface UsuarioDao extends PagingAndSortingRepository<Usuario, Long>{
+	
+	/*
+	 * No es necesario implementar el metodo. JPA lo implementa en funcion del nombre del metodo.
+	 * 
+	 * Internamente esto hará un Select (find) en la tabla de Usuarios (Indicado en la declaracion del DAO) 
+	 * Donfr (By) Username sea el pasado por parametro.
+	 * 
+	 */
+	public Usuario findByUsername(String username);
+	
+	/*
+	 * Tampoco es necesario implentar el metodo. JPA lanzará la query definida en @Query
+	 * 
+	 * En ligar de una query de JPA se puede lanzar una query nativa SQL para ello
+	 * @Query(value = "SELECT username FROM usuarios WHERE username=?1", nativeQuery = true)
+	 */
+	@Query("select u from Usuario u where u.username=?1")
+	public Usuario obtenerPorUsername(String username);
+
+}
+ 
