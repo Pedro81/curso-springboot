@@ -40,7 +40,7 @@ public class ItemController {
 	@Qualifier("serviceFeing")
 	private InterfaceItemService itemService;
 	
-	@Value("${configuracion.text}")
+	@Value("configuracion.text")
 	private String texto;
 	
 	@GetMapping("/listar")
