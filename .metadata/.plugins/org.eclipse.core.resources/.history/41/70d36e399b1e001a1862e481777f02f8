@@ -1,9 +1,0 @@
-INSERT INTO usuarios (username, pasword, enabled, nombre, apellido, email) VALUES('pera','12345',1,'Pedro','Diaz','pera.diaz@gmail.com');
-INSERT INTO usuarios (username, pasword, enabled, nombre, apellido, email) VALUES('amin','12345',1,'Thor','dd','thor.dd@gmail.com');
-
-INSERT INTO roles (nombre) VALUES('ROLE_USER');
-INSERT INTO roles (nombre) VALUES('ROLE_ADMIN');
-
-INSERT INTO usuarios_roles (usuarios_roles,rol_id) VALUES(1,1);
-INSERT INTO usuarios_roles (usuarios_roles,rol_id) VALUES(2,1);
-INSERT INTO usuarios_roles (usuarios_roles,rol_id) VALUES(2,2);

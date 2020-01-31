@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<session version="1.0">
-<refactoring comment="Rename type &apos;com.formacionbdi.springboot.app.item.models.Producto&apos; to &apos;ProductoOld&apos;&#x0A;- Original project: &apos;springboot-servicio-item&apos;&#x0A;- Original element: &apos;com.formacionbdi.springboot.app.item.models.Producto&apos;&#x0A;- Renamed element: &apos;com.formacionbdi.springboot.app.item.models.ProductoOld&apos;&#x0A;- Update textual occurrences in comments and strings" description="Rename type &apos;Producto&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.type" input="/src\/main\/java&lt;com.formacionbdi.springboot.app.item.models{Producto.java[Producto" matchStrategy="1" name="ProductoOld" qualified="false" references="false" similarDeclarations="false" stamp="1575829457401" textual="false" version="1.0"/>
-</session>

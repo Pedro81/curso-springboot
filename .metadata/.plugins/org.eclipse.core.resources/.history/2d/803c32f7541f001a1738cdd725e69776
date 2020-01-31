@@ -1,7 +1,0 @@
-package com.formacionbdi.springboot.app.oauth.security;
-
-import org.springframework.security.oauth2.provider.token.TokenEnhancerChain;
-
-public class InfoAdicionalToken extends TokenEnhancerChain {
-
-}
