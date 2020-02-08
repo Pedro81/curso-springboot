@@ -40,9 +40,6 @@ public class ItemController {
 	@Qualifier("serviceFeing")
 	private InterfaceItemService itemService;
 	
-	@Value("configuracion.text")
-	private String texto;
-	
 	@GetMapping("/listar")
 	public List<Item> findAll(){
 		return itemService.findAll();
@@ -66,9 +63,9 @@ public class ItemController {
 	
 	@GetMapping("/obtener-config")
 	public ResponseEntity<?> getConfiguracion(@Value("${server.port}") String port){
-		log.info(texto+"-"+port);
+		log.info(env.getProperty("configuracion.text")+"-"+port);
 		HashMap<String, String> json = new HashMap<>();
-		json.put("texto", texto);
+		json.put("texto", env.getProperty("configuracion.text"));
 		json.put("port", port);
 		
 		if(env.getActiveProfiles().length > 0 && env.getActiveProfiles()[0].equals("dev")) {

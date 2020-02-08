@@ -5,8 +5,10 @@ import java.util.Arrays;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.env.Environment;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
@@ -18,11 +20,15 @@ import org.springframework.security.oauth2.provider.token.TokenEnhancerChain;
 import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
 import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 
+@RefreshScope
 @Configuration
 @EnableAuthorizationServer
 public class AuthorizationServer extends AuthorizationServerConfigurerAdapter {
 	
 	private Logger log = LoggerFactory.getLogger(AuthorizationServer.class);
+	
+	@Autowired
+	private Environment env;
 	
 	
 	@Autowired
@@ -57,8 +63,8 @@ public class AuthorizationServer extends AuthorizationServerConfigurerAdapter {
 	@Override
 	public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
 		log.info("[AuthorizationServer] INICIO configure ClientDetailsServiceConfigurer");
-		clients.inMemory().withClient("frontendapp")
-		.secret(passwordEncoder.encode("1234"))
+		clients.inMemory().withClient(env.getProperty("config.security.oauth.client.id"))
+		.secret(passwordEncoder.encode(env.getProperty("config.security.oauth.client.secret")))
 		.scopes("read", "write")
 		.authorizedGrantTypes("password", "refresh_token")// password -> Indica como los usuarios van a obtener el token refresh_token -> perimite tener un nuevo token antes de que caduque el actual
 		.accessTokenValiditySeconds(3600)
@@ -103,7 +109,7 @@ public class AuthorizationServer extends AuthorizationServerConfigurerAdapter {
 	@Bean
 	public JwtAccessTokenConverter accessTokenConverter() {
 		JwtAccessTokenConverter tokenConverter = new JwtAccessTokenConverter();
-		tokenConverter.setSigningKey("mi_clave_secreta_12345");
+		tokenConverter.setSigningKey(env.getProperty("config.security.oauth.jwt.key"));
 		return tokenConverter;
 	}
 	
